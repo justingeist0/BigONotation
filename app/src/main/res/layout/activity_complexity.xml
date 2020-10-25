@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue"
+    tools:context=".ComplexityActivity">
+
+    <com.fantasmaplasma.bigonotation.AlgorithmView
+        android:id="@+id/algorithm_view_complexity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_complexity_footer"/>
+
+    <LinearLayout
+        android:id="@+id/layout_complexity_footer"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/margin_complexity_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Spinner
+            android:id="@+id/spinner_complexity_measurements"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            tools:listitem="@layout/spinner_item" />
+
+        <ImageButton
+            android:id="@+id/btn_complexity_info"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_complexity_info"
+            android:background="@drawable/btn_complexity_ripple"
+            android:padding="4dp"
+            android:layout_marginHorizontal="@dimen/margin_complexity_bar"
+            app:layout_constraintStart_toEndOf="@id/spinner_complexity_measurements"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp">
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:layout_marginEnd="@dimen/margin_complexity_bar"
+                app:layout_constraintEnd_toStartOf="@id/btn_complexity_play"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_complexity_algorithm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="Alogirthm lorem itsepm tio dpout lotd itsum tilsfudjldfkjiojsodiddid"
+                    android:textSize="12sp" />
+
+            </HorizontalScrollView>
+
+            <ImageButton
+                android:id="@+id/btn_complexity_play"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_complexity_ripple"
+                android:padding="4dp"
+                android:src="@drawable/ic_complexity_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:text="@string/size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

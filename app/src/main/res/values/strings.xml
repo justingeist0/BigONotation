@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Big O Notation</string>
+    <string name="time_complexity">Time Complexity</string>
+    <string name="space_complexity">Space Complexity</string>
+    <string name="sub_header_text">What is …?</string>
+    <string name="notation">Notation</string>
+    <string name="big_o">Big\'O</string>
+
+    <string name="big_o_description">In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows. The data set pictured as followed with integers. Traditionally \"n\" stands for the number of items in the set but it is common to see multiple variables indicating there are multiple data sets that effect the efficiency of an algorithm. In these visual examples there is one list of Integers of size \"n\".</string>
+
+    <string-array name="big_o_measurement">
+        <item>Θ(1)</item>
+        <item>Θ(log n)</item>
+        <item>Θ(n)</item>
+        <item>Θ(n log n)</item>
+        <item>Θ(n\u00B2)</item>
+    </string-array>
+
+    <string-array name="big_o_measurement_description">
+        <item>The size of the data set has no effect on the %s needed for the code to run.</item>
+        <item>Each time the size of the data set doubles only one more %s operation is needed for the code to run in the worst case scenario. To clarify, the \"log\" in Θ(log n) is of base 2, not base 10 like traditional math class.</item>
+        <item>One %s operation is needed for each item in the data set in the worst case scenario.</item>
+        <item>A %s operation is needed for each item and each time the size of the list doubles in the worst case scenario.</item>
+        <item>For each item all the items in the list need a %s operation in the worst case scenario.</item>
+    </string-array>
+
+    <string-array name="time_complexity_example">
+        <item>Access an item from the array.</item>
+        <item>Find if a value exists in a sorted array.</item>
+        <item>Delete a certain value from a list.</item>
+        <item>Sort the array using merge sort algorithm.</item>
+        <item>Sort the array using bubble sort algorithm.</item>
+    </string-array>
+
+    <string-array name="space_complexity_example">
+        <item>Θ(1)</item>
+        <item>Θ(log n)</item>
+        <item>Θ(n)</item>
+        <item>Θ(n log n)</item>
+        <item>Θ(n\u00B2)</item>
+    </string-array>
+
+    <string name="time">time</string>
+    <string name="space">space</string>
+
+    <string name="settings">Settings</string>
+    <string name="basics">Basics</string>
+    <string name="big_o_notation">Big\'O Notation</string>
+    <string name="size">Size: %s</string>
+    <string name="accessed">Accessed: %s/%s</string>
+
+
+</resources>
