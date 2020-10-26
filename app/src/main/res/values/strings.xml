@@ -1,43 +1,46 @@
 <resources>
-    <string name="app_name">Big O Notation</string>
+    <string name="app_name">Big\'O Notation Visualizer</string>
     <string name="time_complexity">Time Complexity</string>
     <string name="space_complexity">Space Complexity</string>
     <string name="sub_header_text">What is …?</string>
     <string name="notation">Notation</string>
     <string name="big_o">Big\'O</string>
 
-    <string name="big_o_description">In computer science, big O notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows. The data set pictured as followed with integers. Traditionally \"n\" stands for the number of items in the set but it is common to see multiple variables indicating there are multiple data sets that effect the efficiency of an algorithm. In these visual examples there is one list of Integers of size \"n\".</string>
+    <string name="big_o_description">In computer science, Big\'O Notation is used to classify algorithms according to how their run time or space requirements grow as the input size grows. In these examples green signals the data was accessed and red signals the data is ruled out as a potential match.</string>
 
     <string-array name="big_o_measurement">
         <item>Θ(1)</item>
         <item>Θ(log n)</item>
         <item>Θ(n)</item>
-        <item>Θ(n log n)</item>
         <item>Θ(n\u00B2)</item>
     </string-array>
 
     <string-array name="big_o_measurement_description">
         <item>The size of the data set has no effect on the %s needed for the code to run.</item>
-        <item>Each time the size of the data set doubles only one more %s operation is needed for the code to run in the worst case scenario. To clarify, the \"log\" in Θ(log n) is of base 2, not base 10 like traditional math class.</item>
-        <item>One %s operation is needed for each item in the data set in the worst case scenario.</item>
-        <item>A %s operation is needed for each item and each time the size of the list doubles in the worst case scenario.</item>
-        <item>For each item all the items in the list need a %s operation in the worst case scenario.</item>
+        <item>The %s needed increases logarithmically with respect to the size of data-set. Each time the size of the data set doubles only one more operation is needed for the code to run in the worst case scenario. To clarify, the \"log\" in Θ(log n) is of base 2, not of base 10 like traditional math class.</item>
+        <item>The %s needed increases directly proportional to the size of the data-set. One operation is needed for each item in the data set in the worst case scenario.</item>
+        <item>The %s needed increases exponentially proportional to the size of the data-set. All the items in the data-set go through all the items in the data-set in the worst case scenario.</item>
     </string-array>
 
     <string-array name="time_complexity_example">
-        <item>Access an item from the array.</item>
-        <item>Find if a value exists in a sorted array.</item>
-        <item>Delete a certain value from a list.</item>
-        <item>Sort the array using merge sort algorithm.</item>
-        <item>Sort the array using bubble sort algorithm.</item>
+        <item>Constant Time Example: Accessing an item from an array. Only one operation is needed.</item>
+        <item>Logarithmic Time Example: Finding if a value exists in a sorted array. Every time an operation is done it eliminates half the possible remaining matches.</item>
+        <item>Linear Time Example: Deleting a certain value from a list. It is possible the code needs to run through every item in the list.</item>
+        <item>Exponential Time Example: Sorting an array using the bubble sort algorithm. As the data-set size increases it will take more time respectively per item for the code to run. This is not ideal time complexity.</item>
     </string-array>
 
     <string-array name="space_complexity_example">
-        <item>Θ(1)</item>
-        <item>Θ(log n)</item>
-        <item>Θ(n)</item>
-        <item>Θ(n log n)</item>
-        <item>Θ(n\u00B2)</item>
+        <item>Constant Space Example: Creating a copy of an item in an array. Only one space operation is needed.</item>
+        <item>Logarithmic Space Example: Adding a new item to a list for (data-set size)/2 until the value is 0. One more space operation required each time data-set size doubles.</item>
+        <item>Linear Space Example: Copying contents of an existing array. Every item in the array requires a space operation</item>
+        <item>Exponential Space Example: Adding a new item for every item added to every item. A space operation is required for every item in the list at every item of the list. This is not ideal space complexity.</item>
+    </string-array>
+
+    <string-array name="big_o_measurement_name">
+        <item>Constant</item>
+        <item>Logarithmic</item>
+        <item>Linear</item>
+        <item>Exponential</item>
     </string-array>
 
     <string name="time">time</string>
@@ -47,7 +50,7 @@
     <string name="basics">Basics</string>
     <string name="big_o_notation">Big\'O Notation</string>
     <string name="size">Size: %s</string>
-    <string name="accessed">Accessed: %s/%s</string>
-
+    <string name="accessed">Constant Time Operations: %s</string>
+    <string name="speed_ms">Speed %sms</string>
 
 </resources>

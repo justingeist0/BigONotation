@@ -8,7 +8,7 @@
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/basics"
-        android:icon="@drawable/ic_complexity_settings"
+        android:icon="@drawable/ic_action_bar_more_info"
         android:title="@string/basics"
         app:showAsAction="ifRoom"/>
 </menu>

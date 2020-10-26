@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_complexity_bar">2dp</dimen>
+    <dimen name="margin_complexity_bar">1dp</dimen>
 </resources>

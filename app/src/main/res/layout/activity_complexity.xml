@@ -58,6 +58,7 @@
                     android:id="@+id/tv_complexity_algorithm"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
                     android:padding="4dp"
                     android:gravity="center_vertical"
                     android:text="Alogirthm lorem itsepm tio dpout lotd itsum tilsfudjldfkjiojsodiddid"
@@ -80,11 +81,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_complexity_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="16dp"
-        android:background="@color/colorPrimary"
+        android:background="#801E1E1E"
         android:textColor="@android:color/white"
         android:text="@string/size"
         app:layout_constraintTop_toTopOf="parent"

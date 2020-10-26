@@ -5,6 +5,8 @@ import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         model = Model.Factory.getInstance()
+        setUpButtons()
         backgroundGradientAnimation()
         headerTextAnimation()
-        setUpButtons()
     }
 
     private fun setUpButtons() {

@@ -2,14 +2,17 @@ package com.fantasmaplasma.bigonotation
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_complexity.*
 import kotlinx.android.synthetic.main.dialog_complexity.*
+import kotlinx.android.synthetic.main.dialog_complexity_settings.*
+import kotlin.math.log
 
 class ComplexityActivity : AppCompatActivity() {
     private lateinit var model: Model
@@ -21,12 +24,37 @@ class ComplexityActivity : AppCompatActivity() {
             getPreferredSize(),
             getPreferredSpeed()
         )
-        model.barsLiveData.observe(this, {
-            algorithm_view_complexity.setBar(it)
-        })
         setUpActionBar()
         setUpSpinner()
         setUpButtons()
+        setUpObservers()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.header_complexity, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.settings -> {
+                showSettings()
+                true
+            }
+            R.id.basics -> {
+                showInfoDialog(
+                    getString(R.string.big_o_notation),
+                    getString(R.string.big_o_description)
+                )
+                true
+            }
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else ->
+                super.onContextItemSelected(item)
+        }
     }
 
     private fun setUpActionBar() {
@@ -41,18 +69,13 @@ class ComplexityActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.header_complexity, menu)
-        return true
-    }
-
     private fun setUpSpinner() {
         ComplexitySpinnerAdapter(this,
             resources.getStringArray(R.array.big_o_measurement))
-        .also {
-            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner_complexity_measurements.adapter = it
-        }
+            .also {
+                it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner_complexity_measurements.adapter = it
+            }
         spinner_complexity_measurements.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -69,6 +92,7 @@ class ComplexityActivity : AppCompatActivity() {
                                 R.array.space_complexity_example
                         )[position]
                     model.complexity = position
+                    setPlayImage()
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
@@ -77,9 +101,12 @@ class ComplexityActivity : AppCompatActivity() {
     private fun setUpButtons() {
         btn_complexity_info
             .setOnClickListener {
-                showInfo(resources
-                    .getStringArray(R.array.big_o_measurement)
-                        [model.complexity],
+                showInfoDialog(
+                    "${resources
+                        .getStringArray(R.array.big_o_measurement)
+                            [model.complexity]}: ${resources
+                        .getStringArray(R.array.big_o_measurement_name)
+                            [model.complexity]}",
                     resources
                     .getStringArray(R.array.big_o_measurement_description)
                         [model.complexity].replace("%s",
@@ -93,10 +120,44 @@ class ComplexityActivity : AppCompatActivity() {
         btn_complexity_play
             .setOnClickListener {
                 model.playClicked()
+                setPlayImage()
             }
     }
 
-    private fun showInfo(header:String, body: String) {
+    private fun setPlayImage() {
+        btn_complexity_play.setImageDrawable(
+            ContextCompat.getDrawable(this,
+                if(model.isJobActive)
+                    R.drawable.ic_complexity_reset
+                else
+                    R.drawable.ic_complexity_play
+            )
+        )
+    }
+
+    private fun setUpObservers() {
+        model.barsLiveData.observe(this, {
+            algorithm_view_complexity.setBar(it)
+        })
+        model.constantOperationsLiveData.observe(this, { totalInterations ->
+            tv_complexity_stats.text =
+                if(totalInterations <= 0)
+                    getString(R.string.size, model.dataSetSize.toString())
+                else {
+                    getString(
+                        R.string.accessed,
+                        totalInterations.toString()
+                    )
+                }
+        })
+    }
+
+    private fun getLogarithmicTime() =
+        with(log(model.dataSetSize.toDouble(), 2.0)) {
+            if(this > this.toInt()) (this.toInt()+1) else this.toInt()
+        }
+
+    private fun showInfoDialog(header:String, body: String) {
         Dialog(this).apply {
             setContentView(R.layout.dialog_complexity)
             tv_dialog_complexity_header.text = header
@@ -105,25 +166,46 @@ class ComplexityActivity : AppCompatActivity() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.settings -> {
-                true
+    private fun showSettings() {
+        Dialog(this).apply {
+            setContentView(R.layout.dialog_complexity_settings)
+            var currentSizeValue = model.dataSetSize
+            tv_settings_size.text = getSizeText(currentSizeValue)
+            with(slider_settings_size) {
+                value = currentSizeValue.toFloat()
+                addOnChangeListener { _, value, _ ->
+                    currentSizeValue = value.toInt()
+                    this@apply.tv_settings_size.text = getSizeText(currentSizeValue)
+                }
             }
-            R.id.basics -> {
-                showInfo(
-                    getString(R.string.big_o_notation),
-                    getString(R.string.big_o_description)
-                )
-                true
+            var currentSpeedValue = model.speedMS
+            tv_settings_speed.text = getSpeedText(currentSpeedValue)
+            with(slider_settings_speed) {
+                value = currentSpeedValue.toFloat()
+                addOnChangeListener { _, value, _ ->
+                    currentSpeedValue = value.toLong()
+                    this@apply.tv_settings_speed.text = getSpeedText(currentSpeedValue)
+                }
             }
-            android.R.id.home -> {
-                onBackPressed()
-                true
+            setOnCancelListener {
+                model.dataSetSize = currentSizeValue
+                model.speedMS = currentSpeedValue
+                setPlayImage()
             }
-            else ->
-                super.onContextItemSelected(item)
+            show()
         }
+    }
+
+    private fun getSizeText(currentSizeValue: Int) =
+        this@ComplexityActivity.getString(R.string.size, currentSizeValue.toString())
+
+    private fun getSpeedText(currentSpeedValue: Long) =
+        this@ComplexityActivity.getString(R.string.speed_ms, currentSpeedValue.toString())
+
+
+    override fun onResume() {
+        super.onResume()
+        model.reset()
     }
 
     override fun onPause() {
@@ -135,11 +217,12 @@ class ComplexityActivity : AppCompatActivity() {
     }
 
     private fun updatePreferences(size: Int, speed: Long) {
-        getSharedPreferences(KEY_PREFERENCES, MODE_PRIVATE).edit().apply {
-            putInt(KEY_SIZE, size)
-            putLong(KEY_SPEED_MS, speed)
-            apply()
-        }
+        getSharedPreferences(KEY_PREFERENCES, MODE_PRIVATE)
+            .edit().apply {
+                putInt(KEY_SIZE, size)
+                putLong(KEY_SPEED_MS, speed)
+                apply()
+            }
     }
 
     private fun getPreferredSize() =
@@ -155,7 +238,6 @@ class ComplexityActivity : AppCompatActivity() {
         const val KEY_PREFERENCES = "KEY_PREFERENCES"
         const val KEY_SIZE = "KEY_SIZE"
         const val KEY_SPEED_MS = "KEY_SPEED_MS"
-
         const val DEFAULT_SIZE = 100
         const val DEFAULT_SPEED = 100L
     }
