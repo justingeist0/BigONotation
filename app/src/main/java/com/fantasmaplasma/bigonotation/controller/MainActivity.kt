@@ -1,16 +1,15 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.controller
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.Menu
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.fantasmaplasma.bigonotation.model.Model
+import com.fantasmaplasma.bigonotation.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

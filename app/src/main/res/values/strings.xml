@@ -15,32 +15,52 @@
         <item>Θ(n\u00B2)</item>
     </string-array>
 
+    <string name="constant_description">The size of the data set has no effect on the %s needed for the code to run.</string>
+    <string name="logarithmic_description">The %s needed increases logarithmically with respect to the size of data-set. Each time the size of the data set doubles only one more operation is needed for the code to run in the worst case scenario. To clarify, the \"log\" in Θ(log n) is of base 2, not of base 10 like traditional math class.</string>
+    <string name="linear_description">The %s needed increases directly proportional to the size of the data-set. One operation is needed for each item in the data set in the worst case scenario.</string>
+    <string name="exponential_description">The %s needed increases exponentially proportional to the size of the data-set. All the items in the data-set go through all the items in the data-set in the worst case scenario.</string>
+
     <string-array name="big_o_measurement_description">
-        <item>The size of the data set has no effect on the %s needed for the code to run.</item>
-        <item>The %s needed increases logarithmically with respect to the size of data-set. Each time the size of the data set doubles only one more operation is needed for the code to run in the worst case scenario. To clarify, the \"log\" in Θ(log n) is of base 2, not of base 10 like traditional math class.</item>
-        <item>The %s needed increases directly proportional to the size of the data-set. One operation is needed for each item in the data set in the worst case scenario.</item>
-        <item>The %s needed increases exponentially proportional to the size of the data-set. All the items in the data-set go through all the items in the data-set in the worst case scenario.</item>
+        <item>@string/constant_description</item>
+        <item>@string/logarithmic_description</item>
+        <item>@string/linear_description</item>
+        <item>@string/exponential_description</item>
     </string-array>
+
+    <string name="constant_time_example">Constant Time Example: Accessing an item from an array. Only one operation is needed.</string>
+    <string name="logarithmic_time_example">Logarithmic Time Example: Finding if a value exists in a sorted array. Every time an operation is done it eliminates half the possible remaining matches.</string>
+    <string name="linear_time_example">Linear Time Example: Deleting a certain value from a list. It is possible the code needs to run through every item in the list.</string>
+    <string name="exponential_time_example">Exponential Time Example: Sorting an array using the bubble sort algorithm. As the data-set size increases it will take more time respectively per item for the code to run. This is not ideal time complexity.</string>
 
     <string-array name="time_complexity_example">
-        <item>Constant Time Example: Accessing an item from an array. Only one operation is needed.</item>
-        <item>Logarithmic Time Example: Finding if a value exists in a sorted array. Every time an operation is done it eliminates half the possible remaining matches.</item>
-        <item>Linear Time Example: Deleting a certain value from a list. It is possible the code needs to run through every item in the list.</item>
-        <item>Exponential Time Example: Sorting an array using the bubble sort algorithm. As the data-set size increases it will take more time respectively per item for the code to run. This is not ideal time complexity.</item>
+        <item>@string/constant_time_example</item>
+        <item>@string/logarithmic_time_example</item>
+        <item>@string/linear_time_example</item>
+        <item>@string/exponential_time_example</item>
     </string-array>
+
+    <string name="constant_space_example">Constant Space Example: Copying a known value from an array.</string>
+    <string name="logarithmic_space_example">Logarithmic Space Example: Adding a new item to a list for (data-set size)/2 until the value is 0. One more space operation required each time data-set size doubles.</string>
+    <string name="linear_space_example">Linear Space Example: Copying contents of an existing array. Every item in the array requires a space operation.</string>
+    <string name="exponential_space_example">Exponential Space Example: Adding a new item to a list for every item added to every item. A space operation is required for every item in the list at every item of the list. This is not ideal space complexity.</string>
 
     <string-array name="space_complexity_example">
-        <item>Constant Space Example: Creating a copy of an item in an array. Only one space operation is needed.</item>
-        <item>Logarithmic Space Example: Adding a new item to a list for (data-set size)/2 until the value is 0. One more space operation required each time data-set size doubles.</item>
-        <item>Linear Space Example: Copying contents of an existing array. Every item in the array requires a space operation</item>
-        <item>Exponential Space Example: Adding a new item for every item added to every item. A space operation is required for every item in the list at every item of the list. This is not ideal space complexity.</item>
+        <item>@string/constant_space_example</item>
+        <item>@string/logarithmic_space_example</item>
+        <item>@string/linear_space_example</item>
+        <item>@string/exponential_space_example</item>
     </string-array>
 
+    <string name="constant">Constant</string>
+    <string name="logarithmic">Logarithmic</string>
+    <string name="linear">Linear</string>
+    <string name="exponential">Exponential</string>
+
     <string-array name="big_o_measurement_name">
-        <item>Constant</item>
-        <item>Logarithmic</item>
-        <item>Linear</item>
-        <item>Exponential</item>
+        <item>@string/constant</item>
+        <item>@string/logarithmic</item>
+        <item>@string/linear</item>
+        <item>@string/exponential</item>
     </string-array>
 
     <string name="time">time</string>
@@ -50,7 +70,8 @@
     <string name="basics">Basics</string>
     <string name="big_o_notation">Big\'O Notation</string>
     <string name="size">Size: %s</string>
-    <string name="accessed">Constant Time Operations: %s</string>
+    <string name="time_operations">Constant Time Operations: %s</string>
+    <string name="space_operations">Constant Space Operations: %s</string>
     <string name="speed_ms">Speed %sms</string>
 
 </resources>

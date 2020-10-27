@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightBlue"
-    tools:context=".ComplexityActivity">
+    tools:context=".controller.ComplexityActivity">
 
-    <com.fantasmaplasma.bigonotation.AlgorithmView
+    <com.fantasmaplasma.bigonotation.view.AlgorithmView
         android:id="@+id/algorithm_view_complexity"
         android:layout_width="match_parent"
         android:layout_height="0dp"

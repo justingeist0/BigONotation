@@ -1,4 +1,4 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.constant
 
 object BigO {
     const val CONSTANT_TIME = 0

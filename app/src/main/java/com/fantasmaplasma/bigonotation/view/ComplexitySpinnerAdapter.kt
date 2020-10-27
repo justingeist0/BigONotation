@@ -1,4 +1,4 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.fantasmaplasma.bigonotation.R
 
 
 class ComplexitySpinnerAdapter(context: Context, private val items: Array<String>) :

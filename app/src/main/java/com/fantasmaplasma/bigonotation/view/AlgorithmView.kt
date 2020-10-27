@@ -1,4 +1,4 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.view
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,11 +7,12 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.fantasmaplasma.bigonotation.R
 import kotlin.math.max
 import kotlin.math.min
 
 class AlgorithmView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
-    private var bar : List<Array<BarModel>>? = null
+    private var bar : List<Array<Bar>>? = null
     private val defaultMargin = context.resources.getDimension(R.dimen.margin_complexity_bar)
     private var barMargin = 0f
 
@@ -65,7 +66,8 @@ class AlgorithmView(context: Context, attributeSet: AttributeSet) : View(context
         }
     }
 
-    private fun drawBar(canvas: Canvas, position: Float, bar: BarModel, addToBeginning: Float = 0f) {
+    private fun drawBar(canvas: Canvas, position: Float, bar: Bar,
+                        addToBeginning: Float = 0f, flipY: Boolean = false) {
         val paint =
             when (bar.state) {
                 BarState.ACCESSED_AGAIN -> revisitedPaint
@@ -103,7 +105,7 @@ class AlgorithmView(context: Context, attributeSet: AttributeSet) : View(context
                     (if(bar?.size == 2) 2f else 1f) - (if(bar?.size == 2) barMargin else 0f)
 
 
-    fun setBar(bar: List<Array<BarModel>>) {
+    fun setBar(bar: List<Array<Bar>>) {
         this.bar = bar
         invalidate()
     }

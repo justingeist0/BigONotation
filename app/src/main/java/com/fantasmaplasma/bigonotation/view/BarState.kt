@@ -1,4 +1,4 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.view
 
 enum class BarState {
     NO_ACTION,

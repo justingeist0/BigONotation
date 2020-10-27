@@ -1,14 +1,17 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.fantasmaplasma.bigonotation.constant.BigO
+import com.fantasmaplasma.bigonotation.view.Bar
+import com.fantasmaplasma.bigonotation.view.BarState
 import kotlinx.coroutines.*
 import java.util.*
 
 class Model {
-    private var mBars = mutableListOf<Array<BarModel>>()
-    private var mBarsLiveData = MutableLiveData<List<Array<BarModel>>>()
-    val barsLiveData: LiveData<List<Array<BarModel>>>
+    private var mBars = mutableListOf<Array<Bar>>()
+    private var mBarsLiveData = MutableLiveData<List<Array<Bar>>>()
+    val barsLiveData: LiveData<List<Array<Bar>>>
         get() = mBarsLiveData
 
     private var mConstantOperationsLiveData = MutableLiveData<Int>()
@@ -83,16 +86,16 @@ class Model {
         val randomIdx = random.nextInt(mBars[0].size)
         mBars[0].forEach { it.state = BarState.RULED_OUT }
         mBars[0][randomIdx].state = BarState.ACCESSED
-        mBars[1] = arrayOf(BarModel(mBars[0][randomIdx].value))
+        mBars[1] = arrayOf(Bar(mBars[0][randomIdx].value))
         return false
     }
 
     private fun logNSpace(): Boolean {
         mConstantOperations=0
-        val copy = mutableListOf<BarModel>()
+        val copy = mutableListOf<Bar>()
         var idx = mBars[0].size-1
         do {
-            copy.add(BarModel(mBars[0][idx].value))
+            copy.add(Bar(mBars[0][idx].value))
             mConstantOperations++
             mBars[0][idx].apply{ state = BarState.ACCESSED }
             for(i in idx until mBars[0].size)
@@ -111,9 +114,9 @@ class Model {
 
     private fun nSpace(): Boolean {
         mConstantOperations = 0
-        val copy = mutableListOf<BarModel>()
+        val copy = mutableListOf<Bar>()
         mBars[0].forEach {
-            copy.add(BarModel(it.value))
+            copy.add(Bar(it.value))
             mConstantOperations++
             mBars[1] = copy.toTypedArray()
             it.apply{ state = BarState.ACCESSED }
@@ -126,10 +129,10 @@ class Model {
 
     private fun exponentialSpace(): Boolean {
         mConstantOperations = 0
-        val copy = mutableListOf<BarModel>()
+        val copy = mutableListOf<Bar>()
         mBars[0].forEach { value1 ->
             mBars[0].forEach { value2 ->
-                copy.add(BarModel((value1.value+value2.value)/2))
+                copy.add(Bar((value1.value+value2.value)/2))
                 mBars[1] = copy.toTypedArray()
                 mConstantOperations++
                 if (value1.state != BarState.NO_ACTION)
@@ -269,7 +272,7 @@ class Model {
     private fun initBars() {
         mBars.clear()
         mBars.add(Array(dataSetSize) {
-                BarModel(it+1)
+                Bar(it+1)
             }.apply {
                 val shouldShuffle =
                     !showTimeComplexity || complexity != BigO.LOGARITHMIC_TIME
@@ -277,7 +280,7 @@ class Model {
             }
         )
         if(!showTimeComplexity)
-            mBars.add(Array(0) { BarModel(0) })
+            mBars.add(Array(0) { Bar(0) })
         updateLiveData()
     }
 

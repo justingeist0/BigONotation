@@ -1,14 +1,16 @@
-package com.fantasmaplasma.bigonotation
+package com.fantasmaplasma.bigonotation.controller
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.fantasmaplasma.bigonotation.view.ComplexitySpinnerAdapter
+import com.fantasmaplasma.bigonotation.model.Model
+import com.fantasmaplasma.bigonotation.R
 import kotlinx.android.synthetic.main.activity_complexity.*
 import kotlinx.android.synthetic.main.dialog_complexity.*
 import kotlinx.android.synthetic.main.dialog_complexity_settings.*
@@ -139,15 +141,16 @@ class ComplexityActivity : AppCompatActivity() {
         model.barsLiveData.observe(this, {
             algorithm_view_complexity.setBar(it)
         })
-        model.constantOperationsLiveData.observe(this, { totalInterations ->
+        model.constantOperationsLiveData.observe(this, { constantOperations ->
             tv_complexity_stats.text =
-                if(totalInterations <= 0)
+                if(constantOperations <= 0)
                     getString(R.string.size, model.dataSetSize.toString())
                 else {
-                    getString(
-                        R.string.accessed,
-                        totalInterations.toString()
-                    )
+                    val operationsStr = constantOperations.toString()
+                    if (model.showTimeComplexity)
+                        getString(R.string.time_operations, operationsStr)
+                    else
+                        getString(R.string.space_operations, operationsStr)
                 }
         })
     }
