@@ -17,19 +17,19 @@
     <string name="constant_description">El tamaño del conjunto de datos no tiene ningún efecto en el %s necesario para que se ejecute el código.</string>
     <string name="logarithmic_description">El %s necesario aumenta logarítmicamente con respecto al tamaño del conjunto de datos. Cada vez que el tamaño del conjunto de datos se duplica, solo se necesita una operación más para que el código se ejecute en el peor de los casos. Para aclarar, el \"log\" en Θ(log n) es de base 2, no de base 10 como clase de matemáticas tradicional.</string>
     <string name="linear_description">El %s necesario aumenta directamente proporcional al tamaño del conjunto de datos. Se necesita una operación para cada elemento del conjunto de datos en el peor de los casos.</string>
-    <string name="exponential_description">El %s necesario aumenta exponencialmente proporcional al tamaño del conjunto de datos. Todos los elementos del conjunto de datos recorren todos los elementos del conjunto de datos en el peor de los casos.</string>
+    <string name="quadratic_description">El %s necesario aumenta cuadráticamente proporcional al tamaño del conjunto de datos. Todos los elementos del conjunto de datos recorren todos los elementos del conjunto de datos en el peor de los casos.</string>
     <string name="constant_time_example">Ejemplo de tiempo constante: acceso a un elemento desde un array. Solo se necesita una operación.</string>
     <string name="logarithmic_time_example">Ejemplo de tiempo logarítmico: encontrar si existe un valor en un array ordenada. Cada vez que se realiza una operación se elimina la mitad de los valores posibles.</string>
     <string name="linear_time_example">Ejemplo de tiempo lineal: Eliminación de un valor de una lista. Es posible que el código necesite ejecutar todos los elementos de la lista.</string>
-    <string name="exponential_time_example">Ejemplo de tiempo exponencial: Ordenar un array utilizando el algoritmo de \"Bubble Sort\". A medida que aumenta el tamaño del conjunto de datos, el código tardará más tiempo, respectivamente, en ejecutarse. No es una complejidad de tiempo ideal.</string>
+    <string name="quadratic_time_example">Ejemplo de tiempo cuadrático: Ordenar un array utilizando el algoritmo de \"Bubble Sort\". A medida que aumenta el tamaño del conjunto de datos, el código tardará más tiempo, respectivamente, en ejecutarse. No es una complejidad de tiempo ideal.</string>
     <string name="constant">Constante</string>
     <string name="logarithmic">Logarítmico</string>
     <string name="linear">Lineal</string>
-    <string name="exponential">Exponencial</string>
+    <string name="quadratic">Cuadrático</string>
     <string name="constant_space_example">Ejemplo de espacio constante: Copiar un valor conocido de un array.</string>
     <string name="logarithmic_space_example">Ejemplo de espacio logarítmico: Agregar un nuevo elemento a una lista para (tamaño del conjunto de datos)/2 hasta que el valor sea 0. Se requiere una operación de espacio más cada vez que se duplica el tamaño del conjunto de datos.</string>
     <string name="linear_space_example">Ejemplo de espacio lineal: Copia del contenido de una matriz existente. Cada elemento de la matriz requiere una operación de espacio.</string>
-    <string name="exponential_space_example">Ejemplo de espacio exponencial: Agregar un nuevo elemento para cada elemento agregado a cada elemento. Se requiere una operación de espacio para cada elemento de la lista en cada elemento de la lista. No es una complejidad espacial ideal.</string>
+    <string name="quadratic_space_example">Ejemplo de espacio cuadrático: Agregar un nuevo elemento para cada elemento agregado a cada elemento. Se requiere una operación de espacio para cada elemento de la lista en cada elemento de la lista. No es una complejidad espacial ideal.</string>
     <string name="time_operations">Operaciones de tiempo constante: %s</string>
     <string name="space_operations">Operaciones de espacio constante: %s</string>
 </resources>
